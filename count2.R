@@ -29,7 +29,23 @@ print(paste("Total votes:",total,sep=" "))
 
 # Using a default parameter value
 get_votes3 <- function(prompt = "Enter votes: "){
-  votes <- as.integer(readline(prompt))
+  # Using a repeat loop
+  repeat {
+    votes <- suppressWarnings(as.integer(readline(prompt)))
+    if (is.na(votes)) {
+      return(0)
+    } else {
+      return(votes)
+    }
+    #OR
+    ifesle(is.na(votes), 0, votes) #Short hand for above
+    
+    #OR
+    if (!is.na(votes)) {
+      return(votes)
+    }
+  }
+  
   # This return is optional as R will return the last computed value
   #return(votes)
 }
@@ -51,7 +67,6 @@ get_votes4 <- function(mario,peach,bowser){
 
 total <- get_votes4(100,100,100)
 print(paste("Total votes:",total,sep=" "))
-
 
 
 #Note:
